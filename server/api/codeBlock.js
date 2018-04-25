@@ -3,8 +3,8 @@ const {CodeBlock} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-    CodeBlock.findAll()
-    .then(users => res.json(users))
+    CodeBlock.findById(req.body.id)
+    .then(code => res.json(code))
     .catch(next)
 })
 
