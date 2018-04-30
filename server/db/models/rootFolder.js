@@ -10,7 +10,7 @@ const RootFolder = db.define('rootFolder', {
 }, {
     scopes: {
       populated: () => ({
-        include: [{all: true}]
+        include: [{all: true, nested: true}]
       })
     }
   })
