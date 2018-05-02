@@ -3,6 +3,8 @@ const {CodeBlock} = require('../db/models')
 module.exports = router
 
 router.get('/:id', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log(req.params.id)
     CodeBlock.findById(req.params.id)
     .then(code => res.json(code))
@@ -10,6 +12,8 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     CodeBlock.create({
         code: req.body.code,
         rootFolderId: req.body.rootFolderId
