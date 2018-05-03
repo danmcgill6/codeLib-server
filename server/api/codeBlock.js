@@ -17,7 +17,8 @@ router.post('/', (req, res, next) => {
     CodeBlock.create({
         code: req.body.code,
         rootFolderId: req.body.rootFolderId,
-        folderId: req.body.folderId
+        folderId: req.body.folderId,
+        title: req.body.title
     })
     .then(block => res.json(block))
     .catch(next)

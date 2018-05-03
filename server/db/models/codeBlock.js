@@ -3,7 +3,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const CodeBlock = db.define('codeBlock', {
-  code: {
+  title:{
     type: Sequelize.STRING,
     allowNull: false
   },

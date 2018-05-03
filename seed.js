@@ -3,43 +3,43 @@ const { Folder, CodeBlock, RootFolder } = require('./server/db/models')
 
 
 const codeBlocks =  [{
-    name: 'Redux store in codeUp',
+    title: 'Redux store in codeUp',
     code: '    <div className="nav-wrapper">',
     folderId: null,
     rootFolderId:1
 },
 {
-    name: 'server boiler plate',
+    title: 'server boiler plate',
     code: '<div className="nav-wrapper">',
     folderId: 1,
     rootFolderId: null
 },
 {
-    name: 'list component',
+    title: 'list component',
     code: '<div className="nav-wrapper">',
     folderId: 1,
     rootFolderId: null
 },
 {
-    name: 'profile page example',
+    title: 'profile page example',
     code: '<div className="nav-wrapper">',
     folderId: 2,
     rootFolderId: null
 },
 {
-    name: 'api routes for senior enrichment',
+    title: 'api routes for senior enrichment',
     code: '<div className="nav-wrapper">',
     folderId: null,
     rootFolderId:2
 },
 {
-    name: 'user api routes',
+    title: 'user api routes',
     code: 'this.handleKeyCommand = (command) => this._handleKeyCommand(command)',
     folderId: 3,
     rootFolderId: null
 },
 {
-    name: 'code editor component codeLib',
+    title: 'code editor component codeLib',
     code: 'this.handleKeyCommand = (command) => this._handleKeyCommand(command)',
     folderId: 3,
     rootFolderId: null
