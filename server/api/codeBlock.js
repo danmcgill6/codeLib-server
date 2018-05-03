@@ -16,7 +16,8 @@ router.post('/', (req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     CodeBlock.create({
         code: req.body.code,
-        rootFolderId: req.body.rootFolderId
+        rootFolderId: req.body.rootFolderId,
+        folderId: req.body.folderId
     })
     .then(block => res.json(block))
     .catch(next)
