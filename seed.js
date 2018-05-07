@@ -41,10 +41,7 @@ const codeBlocks =  [{
 const folders = [
 
 
-    {
-        name: 'Boiler Plate',
-        isRoot:false
-    },
+  
     {
         name: 'Javascript',
         isRoot:true
@@ -93,9 +90,6 @@ async function seed() {
     // and store the result that the promise resolves to in a variable! This is nice!
 
   
-
- 
-
     const allFolders = await Promise.all(
         folders.map(folder => Folder.create(folder)),
     )

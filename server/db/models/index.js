@@ -1,7 +1,7 @@
 const User = require('./user')
 const CodeBlock = require('./codeBlock')
 const  Folder = require('./folder')
-const  RootFolder = require('./rootFolder')
+
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -17,7 +17,7 @@ const  RootFolder = require('./rootFolder')
  * instead of: const User = require('../db/models/user')
  */
 
-Folder.belongsTo(Folder)
+//  Folder.belongsTo(Folder,{as: 'Child', foreignKey: 'ParentId'})
 Folder.hasMany(Folder)
 Folder.hasMany(CodeBlock)
 

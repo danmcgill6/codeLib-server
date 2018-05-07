@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const {RootFolder} = require('../db/models')
+const {Folder} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    RootFolder.scope('populated').findAll({
+    Folder.scope('populated').findAll({
         where:{
         isRoot: true
     }})
@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    RootFolder.create({
+    Folder.create({
         name: req.body.name
     })
     .then(block => res.json(block))
