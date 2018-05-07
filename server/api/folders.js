@@ -13,6 +13,15 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/:id', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    Folder.scope('populated').findById(req.params.id)
+    .then(folders => res.json(folders))
+    .catch(next)
+})
+
+
 
 router.post('/', (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
