@@ -16,21 +16,17 @@ const  RootFolder = require('./rootFolder')
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
-RootFolder.hasMany(CodeBlock)
-RootFolder.hasMany(Folder)
 
 Folder.belongsTo(Folder)
-Folder.belongsTo(RootFolder)
 Folder.hasMany(Folder)
 Folder.hasMany(CodeBlock)
 
 CodeBlock.belongsTo(Folder)
-CodeBlock.belongsTo(RootFolder)
+
 
 
 module.exports = {
   User,
   CodeBlock,
-  RootFolder,
   Folder
 }

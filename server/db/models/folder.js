@@ -6,6 +6,10 @@ const Folder = db.define('folder', {
     name: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      isRoot:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       }
 },
 {

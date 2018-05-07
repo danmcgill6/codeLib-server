@@ -1,86 +1,77 @@
 const db = require('./server/db')
-const { Folder, CodeBlock, RootFolder } = require('./server/db/models')
+const { Folder, CodeBlock } = require('./server/db/models')
 
 
 const codeBlocks =  [{
     title: 'Redux store in codeUp',
     code: '    <div className="nav-wrapper">',
     folderId: null,
-    rootFolderId:1
 },
 {
     title: 'server boiler plate',
     code: '<div className="nav-wrapper">',
     folderId: 1,
-    rootFolderId: null
 },
 {
     title: 'list component',
     code: '<div className="nav-wrapper">',
     folderId: 1,
-    rootFolderId: null
 },
 {
     title: 'profile page example',
     code: '<div className="nav-wrapper">',
     folderId: 2,
-    rootFolderId: null
 },
 {
     title: 'api routes for senior enrichment',
     code: '<div className="nav-wrapper">',
     folderId: null,
-    rootFolderId:2
 },
 {
     title: 'user api routes',
     code: 'this.handleKeyCommand = (command) => this._handleKeyCommand(command)',
     folderId: 3,
-    rootFolderId: null
 },
 {
     title: 'code editor component codeLib',
     code: 'this.handleKeyCommand = (command) => this._handleKeyCommand(command)',
     folderId: 3,
-    rootFolderId: null
-
 },]
-
-
-
-const rootFolders = [{
-    name: 'Javascript'
-},
-{
-    name: 'Java'
-},
-{
-    name: 'c++'
-}]
-
 
 const folders = [
 
+
+    {
+        name: 'Boiler Plate',
+        isRoot:false
+    },
+    {
+        name: 'Javascript',
+        isRoot:true
+    },
+    {
+        name: 'Java',
+        isRoot:true
+    },
+    {
+        name: 'c++',
+        isRoot:true
+    },
     {
         name: 'Redux',
-        folderId: null,
-        rootFolderId:1
+        folderId: 1,
+        isRoot:false
     },
     {
         name: 'Components',
-        folderId: null,
-        rootFolderId:1
+        folderId: 2,
+        isRoot:false
     },
     {
         name: 'API',
-        folderId: null,
-        rootFolderId:2
+        folderId: 3,
+        isRoot:false
     },
-    {
-        name: 'Boiler Plate',
-        folderId: null,
-        rootFolderId:3
-    }
 ]
 
 async function seed() {
@@ -103,9 +94,7 @@ async function seed() {
 
   
 
-    const allRootFolders = await Promise.all(
-        rootFolders.map(folder => RootFolder.create(folder)),
-    )
+ 
 
     const allFolders = await Promise.all(
         folders.map(folder => Folder.create(folder)),

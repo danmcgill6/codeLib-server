@@ -18,7 +18,8 @@ router.post('/', (req, res, next) => {
         code: req.body.code,
         rootFolderId: req.body.rootFolderId,
         folderId: req.body.folderId,
-        title: req.body.title
+        title: req.body.title,
+        rootFolderId: req.body.rootFolderId
     })
     .then(block => res.json(block))
     .catch(next)
