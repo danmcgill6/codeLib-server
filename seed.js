@@ -40,8 +40,6 @@ const codeBlocks =  [{
 
 const folders = [
 
-
-  
     {
         name: 'Javascript',
         isRoot:true
@@ -52,7 +50,8 @@ const folders = [
     },
     {
         name: 'c++',
-        isRoot:true
+        folderId: 1,
+        isRoot:false
     },
     {
         name: 'Redux',
@@ -68,7 +67,12 @@ const folders = [
         name: 'API',
         folderId: 3,
         isRoot:false
-    },
+    },{
+        name: 'API 2',
+        folderId: 3,
+        isRoot:false
+    }
+  
 ]
 
 async function seed() {

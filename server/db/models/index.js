@@ -20,7 +20,6 @@ const  Folder = require('./folder')
 //  Folder.belongsTo(Folder,{as: 'Child', foreignKey: 'ParentId'})
 Folder.hasMany(Folder)
 Folder.hasMany(CodeBlock)
-
 CodeBlock.belongsTo(Folder)
 
 
