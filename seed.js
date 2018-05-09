@@ -1,5 +1,5 @@
 const db = require('./server/db')
-const { Folder, CodeBlock } = require('./server/db/models')
+const { Folder, CodeBlock, User } = require('./server/db/models')
 
 
 const codeBlocks =  [{
@@ -38,39 +38,58 @@ const codeBlocks =  [{
     folderId: 3,
 },]
 
+const users = [
+    {
+        email:"danmcgill6@gmail.com",
+        password: "nuggets" 
+    },
+    {
+        email:"bootyblizzard@gmail.com",
+        password: "nuggets2" 
+    },
+]
+
+
 const folders = [
 
     {
         name: 'Javascript',
-        isRoot:true
+        isRoot:true,
+        userId:1
+        
     },
     {
         name: 'Java',
-        isRoot:true
+        isRoot:true,
+        userId:1
     },
     {
         name: 'c++',
-        folderId: 1,
-        isRoot:false
+        isRoot:true,
+        userId:2
     },
     {
         name: 'Redux',
         folderId: 1,
-        isRoot:false
+        isRoot:false,
+        userId:1
     },
     {
         name: 'Components',
-        folderId: 2,
-        isRoot:false
+        folderId: 1,
+        isRoot:false,
+        userId:1
     },
     {
         name: 'API',
-        folderId: 3,
-        isRoot:false
+        folderId: 2,
+        isRoot:false,
+        userId:1
     },{
         name: 'API 2',
-        folderId: 3,
-        isRoot:false
+        folderId: 2,
+        isRoot:false,
+        userId:2
     }
   
 ]
@@ -94,6 +113,10 @@ async function seed() {
     // and store the result that the promise resolves to in a variable! This is nice!
 
   
+    const allUsers = await Promise.all(
+        users.map(user => User.create(user)),
+    )
+
     const allFolders = await Promise.all(
         folders.map(folder => Folder.create(folder)),
     )
