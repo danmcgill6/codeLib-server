@@ -36,11 +36,13 @@ router.get('/user/:id', (req, res, next) => {
 
 
 
-router.post('/', (req, res, next) => {
+router.post('/:id', (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     Folder.create({
-        name: req.body.name
+        title: req.body.title,
+        folderId: req.body.folderId,
+        isRoot: req.body.isRoot
     })
     .then(block => res.json(block))
     .catch(next)

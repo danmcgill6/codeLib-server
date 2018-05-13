@@ -3,7 +3,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Folder = db.define('folder', {
-    name: {
+    title: {
         type: Sequelize.STRING,
         allowNull: false
       },

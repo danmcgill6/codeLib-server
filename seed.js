@@ -53,40 +53,40 @@ const users = [
 const folders = [
 
     {
-        name: 'Javascript',
+        title: 'Javascript',
         isRoot:true,
         userId:1
         
     },
     {
-        name: 'Java',
+        title: 'Java',
         isRoot:true,
         userId:1
     },
     {
-        name: 'c++',
+        title: 'c++',
         isRoot:true,
         userId:2
     },
     {
-        name: 'Redux',
+        title: 'Redux',
         folderId: 1,
         isRoot:false,
         userId:1
     },
     {
-        name: 'Components',
+        title: 'Components',
         folderId: 1,
         isRoot:false,
         userId:1
     },
     {
-        name: 'API',
+        title: 'API',
         folderId: 2,
         isRoot:false,
         userId:1
     },{
-        name: 'API 2',
+        title: 'API 2',
         folderId: 2,
         isRoot:false,
         userId:2

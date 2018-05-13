@@ -3,6 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const compression = require('compression')
+const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const passport = require('passport')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
@@ -10,6 +11,7 @@ const db = require('./db')
 const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
+const  {User}  = require('./db/models');
 const socketio = require('socket.io')
 module.exports = app
 
@@ -23,7 +25,7 @@ module.exports = app
  */
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
-// passport registration
+//passport registration
 passport.serializeUser((user, done) => done(null, user.id))
 passport.deserializeUser((id, done) =>
   db.models.user.findById(id)
@@ -34,9 +36,40 @@ const createApp = () => {
   // logging middleware
   app.use(morgan('dev'))
 
-  // Add headers
+
+
+  // body parsing middleware
+  app.use(cookieParser());
+  app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({ extended: true }))
+
+  // compression middleware
+  app.use(compression())
+
+  // session middleware with passport
+  app.use(session({
+    secret: process.env.SESSION_SECRET || 'my best friend is Cody',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: true
+  }))
+  app.use(function (req, res, next) {
+        next(); // needed to continue through express middleware
+  });
+
+  app.use(passport.initialize())
+  app.use(passport.session())
+  
+  app.use(function (req, res, next) {
+    if (!req.session.counter) req.session.counter = 0;
+    console.log('counter', ++req.session.counter); // increment THEN log
+    next(); // needed to continue through express middleware
+  });
+
+    // Add headers
 app.use(function (req, res, next) {
 
+  console.log('req.session', req.user)
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
@@ -53,23 +86,6 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 })
-
-  // body parsing middleware
-  app.use(bodyParser.json())
-  app.use(bodyParser.urlencoded({ extended: true }))
-
-  // compression middleware
-  app.use(compression())
-
-  // session middleware with passport
-  app.use(session({
-    secret: process.env.SESSION_SECRET || 'my best friend is Cody',
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: false
-  }))
-  app.use(passport.initialize())
-  app.use(passport.session())
 
   // auth and api routes
   app.use('/auth', require('./auth'))
