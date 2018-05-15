@@ -42,7 +42,8 @@ router.post('/:id', (req, res, next) => {
     Folder.create({
         title: req.body.title,
         folderId: req.body.folderId,
-        isRoot: req.body.isRoot
+        isRoot: req.body.isRoot,
+        userId: req.body.userId
     })
     .then(block => res.json(block))
     .catch(next)
