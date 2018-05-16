@@ -14,6 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
+    console.log('HITTTTTTT')
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     Folder.scope('populated').findById(req.params.id)
@@ -46,5 +47,18 @@ router.post('/:id', (req, res, next) => {
         userId: req.body.userId
     })
     .then(block => res.json(block))
+    .catch(next)
+})
+
+
+router.delete('/:id', (req,res,next) =>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    Folder.destroy({
+        where:{
+            id:req.params.id
+        }
+    })
+    .then(block => res.send(202))
     .catch(next)
 })
